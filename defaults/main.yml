@@ -14,24 +14,24 @@
 # Basic configuration options [[[
 # -------------------------------
 
-# .. envvar:: piwik__site_domain [[[
+# .. envvar:: piwik__main_domain [[[
 #
-# Default domain that will be used to host the forum instance.
-piwik__site_domain: 'analytics.{{ ansible_domain }}'
+# Default domain that will be used to host the Piwik instance.
+piwik__main_domain: 'analytics.{{ ansible_domain }}'
 
 # ]]]
 
 # .. envvar:: piwik__site_domains [[[
 #
-# Defines domaines that respond to requests.
-piwik__site_domains: [ '{{ piwik__site_domain }}' ]
+# Defines other domains that the instance respond to.
+piwik__site_domains: [ '{{ piwik__main_domain }}' ]
 
 # ]]]
 
 # .. envvar:: piwik__pki_realm [[[
 #
 # Defines the PKI realm for this instance.
-piwik__pki_realm: '{{ piwik__site_domains[0] }}'
+piwik__pki_realm: '{{ piwik__main_domain }}'
 
 # ]]]
 
@@ -63,7 +63,7 @@ piwik__group: '{{ ansible_local.nginx.group
 piwik__www_directory: '{{ (ansible_local.nginx.www
                            if (ansible_local|d() and ansible_local.nginx|d() and
                                ansible_local.nginx.www|d())
-                           else "/srv/www") + "/sites/" + piwik__site_domain }}'
+                           else "/srv/www") + "/sites/" + piwik__main_domain }}'
 
 # ]]]
 
