@@ -66,13 +66,13 @@ piwik__www: '{{ (ansible_local.nginx.www
                  else "/srv/www") + "/sites/" + piwik__user }}'
 
                                                             # ]]]
-# .. envvar:: piwik__home_directory [[[
+# .. envvar:: piwik__home [[[
 #
 # Default home directory for piwik sources.
 piwik__home: '{{ piwik__www }}'
 
                                                             # ]]]
-# .. envvar:: piwik__source_version [[[
+# .. envvar:: piwik__version [[[
 #
 # piwik source version.
 piwik__version: '3.0.4'
@@ -285,7 +285,7 @@ piwik__database_password: '{{ lookup("password", piwik__mariadb_password_path +
                               piwik__database_password_length) if piwik__database_engine == "mariadb" else "" }}'
 
                                                             # ]]]
-# .. envvar:: piwik__mariadb__db_password_length [[[
+# .. envvar:: piwik__database_password_length [[[
 #
 # Sets the mariadb table prefix
 piwik__database_password_length: '40'
