@@ -91,7 +91,7 @@
 - name: Save Ansible facts in facts.d
   template:
     src: 'etc/ansible/facts.d/piwik.fact.j2'
-    path: '/etc/ansible/facts.d/piwik.fact'
+    dest: '/etc/ansible/facts.d/piwik.fact'
     owner: 'root'
     group: 'root'
     mode: '0644'
