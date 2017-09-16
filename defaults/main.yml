@@ -233,16 +233,6 @@ piwik__database_name: 'piwik_production'
 piwik__database_user: '{{ piwik__user }}'
 
                                                             # ]]]
-# .. envvar:: piwik__mariadb_password_path [[[
-#
-# Sets the mariadb password path
-piwik__mariadb_password_path: '{{ secret + "/mariadb/" +
-                                  (ansible_local.mariadb.delegate_to
-                                   if (ansible_local|d() and ansible_local.mariadb|d() and
-                                       ansible_local.mariadb.delegate_to|d())
-                                   else "localhost") + "/credentials/" + piwik__database_user + "/password" }}'
-
-                                                            # ]]]
 # .. envvar:: piwik__database_password [[[
 #
 # Sets the database password.
@@ -255,6 +245,16 @@ piwik__database_password: '{{ lookup("password", piwik__mariadb_password_path +
 #
 # Sets the mariadb table prefix
 piwik__database_password_length: '40'
+
+                                                            # ]]]
+# .. envvar:: piwik__mariadb_password_path [[[
+#
+# Sets the mariadb password path
+piwik__mariadb_password_path: '{{ secret + "/mariadb/" +
+                                  (ansible_local.mariadb.delegate_to
+                                   if (ansible_local|d() and ansible_local.mariadb|d() and
+                                       ansible_local.mariadb.delegate_to|d())
+                                   else "localhost") + "/credentials/" + piwik__database_user + "/password" }}'
 
                                                             # ]]]
 # .. envvar:: piwik__mariadb__dependent_users [[[
