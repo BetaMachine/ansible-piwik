@@ -88,7 +88,7 @@ piwik__pgp_key: '814E 346F A01A 20DB B04B 6807 B5DB D592 5590 A237'
 #
 #
 # piwik pgp key server.
-piwik__pgp_server: 'keys.gnupg.net'
+piwik__pgp_server: 'pgp.mit.edu'
 
                                                             # ]]]
 # .. envvar:: piwik__src_url [[[
@@ -100,7 +100,7 @@ piwik__src_url: 'https://builds.piwik.org/piwik-{{ piwik__version }}.tar.gz'
 # .. envvar:: piwik__src_sign_url [[[
 #
 # Source signature url.
-piwik__src_sign_url: 'https://builds.piwik.org/piwik-{{ piwik__source_version }}.tar.gz.asc'
+piwik__src_sign_url: 'https://builds.piwik.org/piwik-{{ piwik__version }}.tar.gz.asc'
 
                                                             # ]]]
 # .. envvar:: piwik__src [[[
