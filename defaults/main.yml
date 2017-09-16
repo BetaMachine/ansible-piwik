@@ -84,13 +84,6 @@ piwik__version: '3.0.4'
 piwik__pgp_key: '814E 346F A01A 20DB B04B 6807 B5DB D592 5590 A237'
 
                                                             # ]]]
-# .. envvar:: piwik__pgp_server [[[
-#
-#
-# piwik pgp key server.
-piwik__pgp_server: 'pgp.mit.edu'
-
-                                                            # ]]]
 # .. envvar:: piwik__src_url [[[
 #
 # piwik source url.
@@ -117,33 +110,6 @@ piwik__src: '{{ (ansible_local.root.src
 #
 # The maximum size of any acceptable file or upload in MB.
 piwik__max_file_size: '30'
-
-                                                            # ]]]
-# .. envvar:: piwik__admin_user [[[
-#
-# Defines the administrator user name.
-piwik__admin_user: '{{ piwik__user }}'
-
-                                                            # ]]]
-# .. envvar:: piwik__admin_email [[[
-#
-# Defines the administrator email.
-piwik__admin_email: '{{ piwik__user }}@{{ piwik__domains[0] }}'
-
-                                                            # ]]]
-# .. envvar:: piwik__admin_password [[[
-#
-# piwik admin interface user password.
-piwik__admin_password: '{{ lookup("password", secret + "/piwik/" +
-                                 ansible_fqdn + "/credentials/" +
-                                 piwik__admin_user + "/password length=" +
-                                 piwik__admin_password_length) }}'
-
-                                                            # ]]]
-# .. envvar:: piwik__admin_password_length [[[
-#
-# Defines the administrator default password length.
-piwik__admin_password_length: '20'
 
                                                             # ]]]
                                                             # ]]]
@@ -289,12 +255,6 @@ piwik__database_password: '{{ lookup("password", piwik__mariadb_password_path +
 #
 # Sets the mariadb table prefix
 piwik__database_password_length: '40'
-
-                                                            # ]]]
-# .. envvar:: piwik__mariadb__db_prefix [[[
-#
-# Sets the mariadb table prefix
-piwik__database_prefix: 'piwik_'
 
                                                             # ]]]
 # .. envvar:: piwik__mariadb__dependent_users [[[

@@ -36,7 +36,10 @@
 - block:
     - name: Install maintainer key.
       apt_key:
-        keyserver: '{{ piwik__pgp_server }}'
+        keyserver: '{{ ansible_local.core.keyserver
+                       if (ansible_local|d() and ansible_local.core|d() and
+                           ansible_local.core.keyserver|d())
+                       else "hkp://pool.sks-keyservers.net" }}'
         id: '{{ piwik__pgp_key | replace(" ", "") }}'
 
     - name: Ensure the source directory is present.
