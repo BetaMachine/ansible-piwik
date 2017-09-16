@@ -4,7 +4,7 @@
   group:
     name: '{{ piwik__group }}'
     system: True
-    state: present
+    state: 'present'
 
 - name: Create piwik user
   user:
@@ -15,7 +15,7 @@
     createhome: False
     comment: 'Piwik'
     system: True
-    state: present
+    state: 'present'
 
 - name: Create home directory.
   file:
@@ -23,7 +23,7 @@
     state: 'directory'
     owner: '{{ piwik__user }}'
     group: '{{ piwik__group }}'
-    mode: 0750
+    mode: '0750'
 
 - name: Create www directory.
   file:
@@ -31,7 +31,7 @@
     state: 'directory'
     owner: '{{ piwik__user }}'
     group: '{{ piwik__group }}'
-    mode: 0750
+    mode: '0750'
 
 - block:
     - name: Install maintainer key.
