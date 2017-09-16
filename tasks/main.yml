@@ -39,14 +39,19 @@
         keyserver: '{{ piwik__pgp_server }}'
         id: '{{ piwik__pgp_key | replace(" ", "") }}'
 
+    - name: Ensure the source directory is present.
+      file:
+        path: '{{ piwik__src }}'
+        state: 'directory'
+
     - name: Download sources.
       get_url:
-        url: '{{ piwik__source_url }}'
+        url: '{{ piwik__src_url }}'
         dest: '{{ piwik__src }}'
 
     - name: Download source signature.
       get_url:
-        url: '{{ piwik_source_sign_url }}'
+        url: '{{ piwik__src_sign_url }}'
         dest: '{{ piwik__src }}'
 
     - name: Check integrity of downloaded sources.
@@ -63,10 +68,17 @@
         extra_opts: [ '--strip-components=1' ]
         owner: '{{ piwik__user }}'
         group: '{{ piwik__group }}'
+        remote_src: 'yes'
+
+    - name: Remove unexpected directories
+      file:
+        path: '{{ piwik__www }}/{{ item }}'
+        state: 'absent'
+      with_items:
+        - 'plugins/Morpheus/icons/submodules'
 
   when: ansible_local.piwik is undefined or (ansible_local.piwik is defined and
-          (ansible_local.piwik.installed is undefined or
-            (ansible_local.piwik.installed is defined and not ansible_local.piwik.installed)))
+          ((not ansible_local.piwik.enabled) or ansible_local.piwik.version != piwik__version))
 
 - name: Ensure that Ansible local facts directory is present
   file:

@@ -109,8 +109,8 @@ piwik__src_sign_url: 'https://builds.piwik.org/piwik-{{ piwik__version }}.tar.gz
 piwik__src: '{{ (ansible_local.root.src
                  if (ansible_local|d() and ansible_local.root|d() and
                      ansible_local.root.src|d())
-                 else "/usr/local/src) + "/" + piwik__user + "/" +
-                   (piwik__source_url.split("://") | last | split("/") | first) }}'
+                 else "/usr/local/src") + "/" + piwik__user + "/" +
+                   (piwik__src_url.split("://") | last | split("/") | first) }}'
 
                                                             # ]]]
 # .. envvar:: piwik__max_file_size [[[
